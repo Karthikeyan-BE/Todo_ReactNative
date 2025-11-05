@@ -1,252 +1,138 @@
 # 📱 Todo React Native App
 
-<div align="center">
-
 ![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-</div>
-
 ---
 
 ## ✨ Introduction
-
-Welcome to **Todo React Native** - a modern, feature-rich task management application built with cutting-edge mobile development technologies! 🚀
-
-This project demonstrates best practices in React Native development, combining the power of TypeScript for type safety, Expo for seamless development workflow, and an intuitive user interface for managing your daily tasks efficiently.
-
-### 🎯 Project Goals
-
-- **Simplicity First**: Create an intuitive and clean user experience
-- **Modern Architecture**: Leverage the latest React Native and TypeScript features
-- **Cross-Platform**: Build once, run everywhere (iOS & Android)
-- **Performance**: Optimize for smooth animations and responsive interactions
-- **Learning Resource**: Serve as a reference implementation for React Native beginners
-
-### 🌟 Key Features
-
-✅ **Task Management**: Create, edit, and delete tasks with ease  
-✅ **Real-time Updates**: Instant synchronization across the app  
-✅ **Beautiful UI**: Modern, clean design with smooth animations  
-✅ **Type Safety**: Full TypeScript support for better code quality  
-✅ **Cross-Platform**: Works seamlessly on iOS and Android  
-✅ **Offline Support**: Manage tasks even without internet connection  
-✅ **Responsive Design**: Adapts to different screen sizes perfectly  
+Welcome to **Todo React Native**! This repository is based on the latest Expo Router and React Native template, designed as a starter for a cross-platform, modern TODO/task management app using TypeScript and Expo.
 
 ---
 
-## 🛠️ Technologies Used
+## 🏗️ App Architecture
 
-This project is built with a modern tech stack:
+**Folder Structure**
+```
+/
+├── app/            # App entrypoint & navigation (Expo Router)
+│   ├── (tabs)/     # Main tab navigation (index.tsx, explore.tsx, _layout.tsx)
+│   ├── +not-found.tsx
+│   └── _layout.tsx
+├── components/     # Shared React Native UI components
+├── constants/      # Constants (e.g., Colors.ts)
+├── hooks/          # Custom React hooks (e.g., useColorScheme)
+├── scripts/        # Utility scripts
+├── assets/         # Images & static files
+├── package.json
+```
 
-| Technology | Description | Version |
-|------------|-------------|----------|
-| **React Native** | Framework for building native apps using React | Latest |
-| **TypeScript** | Typed superset of JavaScript for enhanced code quality | 5.x |
-| **Expo** | Platform for universal React applications | SDK 51+ |
-| **React Navigation** | Routing and navigation for React Native apps | 6.x |
-| **Async Storage** | Local storage solution for React Native | Latest |
+**Component Breakdown**:
+- `components/ui/`, `Collapsible.tsx`, `ParallaxScrollView.tsx`, etc.: Individual presentation components
+- `hooks/`: Custom theming and color scheme logic
+- Navigation handled with Expo Router (`app/(tabs)/_layout.tsx`)
+- Screens are under `app/(tabs)/` (currently `index.tsx`, `explore.tsx`)
 
 ---
 
-## 📦 Installation
+## 🌟 Core Features (Current State)
+- Cross-platform Expo project setup (iOS/Android/Web)
+- TypeScript throughout the codebase
+- Customizable theming
+- Expo Router navigation template
+- Modern UI structure ready for expansion
 
-Follow these steps to get the project up and running on your local machine:
+> **Note:** The actual TODO/business logic is **not yet implemented** — this project currently serves as a technical scaffold for a TODO app.
+
+---
+
+## ⚙️ API/Logic Explanation
+At present:
+- No external APIs or persistent business logic is present
+- The custom hooks in `hooks/` (`useColorScheme`, `useThemeColor`) handle dynamic theming
+- No usage of AsyncStorage yet (to be implemented)
+- Example UI logic is present in components like `HelloWave`, `Collapsible`, and navigation layouts
+
+---
+
+## 🚦 Example Usage
+Example: How to use a custom color hook inside a component:
+```tsx
+import { useThemeColor } from '../hooks/useThemeColor';
+
+export default function MyComponent() {
+  const color = useThemeColor({}, 'text');
+  return <Text style={{ color }}>Hello!</Text>;
+}
+```
+
+Example: Adding a new screen (under `app/(tabs)/`):
+```tsx
+// app/(tabs)/profile.tsx
+import { Text } from 'react-native';
+export default function ProfileScreen() {
+  return <Text>Profile</Text>;
+}
+```
+
+---
+
+## 🧪 Test Coverage
+- As of now, **no test suites** are implemented.
+- To add tests: Scaffold with [Jest](https://jestjs.io/) or [React Native Testing Library](https://testing-library.com/docs/react-native-testing-library/intro/).
+
+---
+
+## 🚀 Performance Optimizations
+- Expo + TypeScript ensures robust build-time/type-time validation
+- Minimalistic project setup for fast iteration
+- Utilizes React Native's built-in optimizations
+
+---
+
+## ⏳ Limitations / TODOs
+- **Core TODO logic not implemented:** No create/edit/delete task features yet
+- **No state management:** Redux/MobX/Zustand, etc., are not included
+- **No persistent storage:** AsyncStorage or remote backend not in use
+- **No API integration implemented**
+- **No automated tests**
+
+**Planned Improvements:**
+- Implement task model, persistent storage, and editing/deleting features
+- Add state management for scalable data flows
+- Add proper test coverage
+- Implement example REST/GraphQL API integration
+
+---
+
+## 📦 Installation & Usage
 
 ### Prerequisites
-
-Make sure you have the following installed:
-- Node.js (v18 or higher)
+- Node.js v18+
 - npm or yarn
-- Expo CLI (optional, but recommended)
+- Expo CLI (recommended)
 
-### Step-by-Step Setup
-
-1. **Clone the repository**
-
-```bash
+```sh
 git clone https://github.com/Karthikeyan-BE/Todo_ReactNative.git
-```
-
-2. **Navigate to project directory**
-
-```bash
 cd Todo_ReactNative
-```
-
-3. **Install dependencies**
-
-```bash
-npm install
-```
-
-or if you prefer yarn:
-
-```bash
-yarn install
-```
-
-4. **Start the development server**
-
-```bash
+npm install   # or yarn install
 npx expo start
 ```
 
----
-
-## 🚀 Usage
-
-Once the development server is running, you have several options to view your app:
-
-### Running on Device/Emulator
-
-#### iOS Simulator (macOS only)
-```bash
-npx expo start --ios
-```
-
-#### Android Emulator
-```bash
-npx expo start --android
-```
-
-#### Physical Device (Expo Go)
-1. Install the [Expo Go app](https://expo.dev/client) from App Store or Google Play
-2. Scan the QR code displayed in the terminal or browser
-3. The app will load automatically on your device
-
-### Development Commands
-
-```bash
-# Start the app in development mode
-npm start
-
-# Run on iOS
-npm run ios
-
-# Run on Android
-npm run android
-
-# Run tests (if configured)
-npm test
-
-# Build for production
-npm run build
-```
-
----
-
-## 📸 Screenshots
-
-<div align="center">
-
-### Home Screen
-![Home Screen](./assets/screenshots/home.png)
-*Main task list with beautiful UI*
-
-### Add Task
-![Add Task](./assets/screenshots/add-task.png)
-*Simple and intuitive task creation*
-
-### Task Details
-![Task Details](./assets/screenshots/task-details.png)
-*Detailed view with edit options*
-
-</div>
-
-> **Note**: Screenshots are placeholders. Replace with actual app screenshots once available.
+Open on iOS/Android using Expo Go or with a local simulator.
 
 ---
 
 ## 🤝 Contributing
-
-We welcome contributions from the community! Here's how you can help:
-
-### How to Contribute
-
-1. **Fork the repository**
-   - Click the 'Fork' button at the top right of this page
-
-2. **Clone your fork**
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/Todo_ReactNative.git
-   ```
-
-3. **Create a new branch**
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-4. **Make your changes**
-   - Write clean, well-documented code
-   - Follow the existing code style
-   - Add tests if applicable
-
-5. **Commit your changes**
-   ```bash
-   git add .
-   git commit -m "Add: your feature description"
-   ```
-
-6. **Push to your fork**
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-7. **Open a Pull Request**
-   - Go to the original repository
-   - Click 'New Pull Request'
-   - Describe your changes clearly
-
-### Contribution Guidelines
-
-- Follow TypeScript best practices
-- Write meaningful commit messages
-- Update documentation for new features
-- Ensure code passes all tests
-- Be respectful and constructive in discussions
+See [CONTRIBUTING](CONTRIBUTING.md) for guidelines, or open an issue with your proposal/bug.
 
 ---
 
 ## 📄 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
-```
-MIT License
-
-Copyright (c) 2025 Karthikeyan-BE
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-```
+MIT — see [LICENSE](LICENSE).
 
 ---
 
-## 📧 Contact
-
-**Project Maintainer**: Karthikeyan-BE
-
-- 📫 GitHub: [@Karthikeyan-BE](https://github.com/Karthikeyan-BE)
-- 💼 Repository: [Todo_ReactNative](https://github.com/Karthikeyan-BE/Todo_ReactNative)
-- 🐛 Issues: [Report a bug](https://github.com/Karthikeyan-BE/Todo_ReactNative/issues)
-- 💡 Feature Requests: [Suggest a feature](https://github.com/Karthikeyan-BE/Todo_ReactNative/issues/new)
-
----
-
-<div align="center">
-
-### ⭐ Star this repository if you find it helpful!
-
-Made with ❤️ by [Karthikeyan-BE](https://github.com/Karthikeyan-BE)
-
-</div>
+_Made with Expo and React Native._
